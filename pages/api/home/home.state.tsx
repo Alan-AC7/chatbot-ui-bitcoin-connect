@@ -30,7 +30,7 @@ export interface HomeInitialState {
 }
 
 export const initialState: HomeInitialState = {
-  apiKey: '',
+  apiKey: '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',
   loading: false,
   pluginKeys: [],
   lightMode: 'dark',

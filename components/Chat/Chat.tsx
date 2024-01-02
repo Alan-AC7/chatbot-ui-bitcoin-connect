@@ -352,10 +352,11 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
       {!(apiKey || serverSideApiKeyIsSet) ? (
         <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
           <div className="text-center text-4xl font-bold text-black dark:text-white">
-            Welcome to Chatbot UI
+            Welcome to Chatbot UI + Bitcoin Connect
           </div>
           <div className="text-center text-lg text-black dark:text-white">
             <div className="mb-8">{`Chatbot UI is an open source clone of OpenAI's ChatGPT UI.`}</div>
+            <div className="mb-8">{`Bitcoin Connect allows you to connect your bitcoin wallet, make payments and enable WebLN in your browser.`}</div>
             <div className="mb-2 font-bold">
               Important: Chatbot UI is 100% unaffiliated with OpenAI.
             </div>
@@ -383,6 +384,25 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                 className="text-blue-500 hover:underline"
               >
                 openai.com
+              </a>
+            </div>
+          </div>
+          <div className="text-center text-gray-500 dark:text-gray-400">
+            <div className="mb-2">
+            Bitcoin Connect allows you to connect your bitcoin wallet, make payments and enable WebLN in your browser.
+            </div>
+            <div className="mb-2">
+              This version of Chatbot UI with Bitcoin Connect integrated will ask you to pay a small amount of sats for each prompt.
+            </div>
+            <div>
+              {t("If you want to integrate Bitcoin Connect to your project or app, you can check it here: ")}
+              <a
+                href="https://bitcoin-connect.com"
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                Bitcoin Connect
               </a>
             </div>
           </div>

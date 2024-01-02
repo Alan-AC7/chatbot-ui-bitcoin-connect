@@ -17,6 +17,7 @@ import {
 } from 'react';
 
 import { useTranslation } from 'next-i18next';
+import { LightningAddress } from "@getalby/lightning-tools";
 
 import { Message } from '@/types/chat';
 import { Plugin } from '@/types/plugin';
@@ -53,6 +54,8 @@ export const ChatInput = ({
     dispatch: homeDispatch,
   } = useContext(HomeContext);
 
+  
+
   const [content, setContent] = useState<string>();
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [showPromptList, setShowPromptList] = useState(false);
@@ -64,6 +67,7 @@ export const ChatInput = ({
   const [plugin, setPlugin] = useState<Plugin | null>(null);
 
   const promptListRef = useRef<HTMLUListElement | null>(null);
+  const [invoice, setInvoice] = useState('');
 
   const filteredPrompts = prompts.filter((prompt) =>
     prompt.name.toLowerCase().includes(promptInputValue.toLowerCase()),
@@ -87,7 +91,7 @@ export const ChatInput = ({
     updatePromptListVisibility(value);
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (messageIsStreaming) {
       return;
     }
@@ -97,9 +101,22 @@ export const ChatInput = ({
       return;
     }
 
-    onSend({ role: 'user', content }, plugin);
-    setContent('');
-    setPlugin(null);
+    (async () => {
+    
+      const ln = new LightningAddress('yoggyac7@getalby.com');
+      await ln.fetch();
+      const invoice = await ln.requestInvoice({ satoshi: 5 });
+      setInvoice(invoice.paymentRequest);
+    })();
+    const launchPaymentModal = await import('@getalby/bitcoin-connect-react').then((mod) => mod.launchPaymentModal);
+    launchPaymentModal({
+      invoice,
+      onPaid: () => {
+        onSend({ role: 'user', content }, plugin);
+        setContent('');
+        setPlugin(null);
+      }
+    });
 
     if (window.innerWidth < 640 && textareaRef && textareaRef.current) {
       textareaRef.current.blur();
@@ -229,6 +246,8 @@ export const ChatInput = ({
     }
   }, [activePromptIndex]);
 
+
+
   useEffect(() => {
     if (textareaRef && textareaRef.current) {
       textareaRef.current.style.height = 'inherit';
@@ -238,6 +257,8 @@ export const ChatInput = ({
       }`;
     }
   }, [content]);
+  
+  
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -335,6 +356,7 @@ export const ChatInput = ({
             onKeyDown={handleKeyDown}
           />
 
+      
           <button
             className="absolute right-2 top-2 rounded-sm p-1 text-neutral-800 opacity-60 hover:bg-neutral-200 hover:text-neutral-900 dark:bg-opacity-50 dark:text-neutral-100 dark:hover:text-neutral-200"
             onClick={handleSend}

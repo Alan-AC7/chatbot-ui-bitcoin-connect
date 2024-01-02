@@ -237,5 +237,6 @@ export const Chatbar = () => {
         footerComponent={<ChatbarSettings />}
       />
     </ChatbarContext.Provider>
+    
   );
 };

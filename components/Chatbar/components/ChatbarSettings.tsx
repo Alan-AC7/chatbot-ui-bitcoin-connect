@@ -2,6 +2,7 @@ import { IconFileExport, IconSettings } from '@tabler/icons-react';
 import { useContext, useState } from 'react';
 
 import { useTranslation } from 'next-i18next';
+import dynamic from 'next/dynamic';
 
 import HomeContext from '@/pages/api/home/home.context';
 
@@ -29,6 +30,13 @@ export const ChatbarSettings = () => {
     dispatch: homeDispatch,
   } = useContext(HomeContext);
 
+  const Button = dynamic(
+    () => import('@getalby/bitcoin-connect-react').then((mod) => mod.Button),
+    {
+      ssr: false,
+    }
+  );
+
   const {
     handleClearConversations,
     handleImportConversations,
@@ -55,6 +63,8 @@ export const ChatbarSettings = () => {
         icon={<IconSettings size={18} />}
         onClick={() => setIsSettingDialog(true)}
       />
+      
+
 
       {!serverSideApiKeyIsSet ? (
         <Key apiKey={apiKey} onApiKeyChange={handleApiKeyChange} />
@@ -68,6 +78,10 @@ export const ChatbarSettings = () => {
           setIsSettingDialog(false);
         }}
       />
+<br></br>
+<Button />
+<br></br>
+
     </div>
   );
 };
