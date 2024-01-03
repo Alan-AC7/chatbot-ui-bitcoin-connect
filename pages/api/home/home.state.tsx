@@ -30,7 +30,7 @@ export interface HomeInitialState {
 }
 
 export const initialState: HomeInitialState = {
-  apiKey: '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',
+  apiKey: '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',
   loading: false,
   pluginKeys: [],
   lightMode: 'dark',
@@ -49,6 +49,6 @@ export const initialState: HomeInitialState = {
   messageError: false,
   searchTerm: '',
   defaultModelId: undefined,
-  serverSideApiKeyIsSet: false,
+  serverSideApiKeyIsSet: true,
   serverSidePluginKeysSet: false,
 };
