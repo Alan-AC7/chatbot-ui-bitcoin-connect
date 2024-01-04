@@ -30,7 +30,7 @@ export interface HomeInitialState {
 }
 
 export const initialState: HomeInitialState = {
-  apiKey: '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',
+  apiKey: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY : "",
   loading: false,
   pluginKeys: [],
   lightMode: 'dark',
@@ -49,6 +49,6 @@ export const initialState: HomeInitialState = {
   messageError: false,
   searchTerm: '',
   defaultModelId: undefined,
-  serverSideApiKeyIsSet: true,
+  serverSideApiKeyIsSet: !!process.env.OPENAI_API_KEY,
   serverSidePluginKeysSet: false,
 };
