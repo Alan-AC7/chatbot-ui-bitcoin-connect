@@ -101,16 +101,16 @@ export const ChatInput = ({
       return;
     }
 
-    (async () => {
     
-      const ln = new LightningAddress('yoggyac7@getalby.com');
+    
+      const ln = new LightningAddress('hello@getalby.com');
       await ln.fetch();
-      const invoice = await ln.requestInvoice({ satoshi: 5 });
-      setInvoice(invoice.paymentRequest);
-    })();
+      const invoiceResponse = await ln.requestInvoice({ satoshi: 5 });
+      setInvoice(invoiceResponse.paymentRequest);
+   
     const launchPaymentModal = await import('@getalby/bitcoin-connect-react').then((mod) => mod.launchPaymentModal);
     launchPaymentModal({
-      invoice,
+      invoice: invoiceResponse.paymentRequest ,
       onPaid: () => {
         onSend({ role: 'user', content }, plugin);
         setContent('');
