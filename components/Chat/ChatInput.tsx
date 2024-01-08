@@ -91,6 +91,7 @@ export const ChatInput = ({
     updatePromptListVisibility(value);
   };
 
+  
   const handleSend = async () => {
     if (messageIsStreaming) {
       return;
@@ -109,20 +110,38 @@ export const ChatInput = ({
       setInvoice(invoiceResponse.paymentRequest);
    
     const launchPaymentModal = await import('@getalby/bitcoin-connect-react').then((mod) => mod.launchPaymentModal);
+
+    const {setPaid} =
     launchPaymentModal({
       invoice: invoiceResponse.paymentRequest ,
       onPaid: () => {
+        clearInterval(checkPaymentInterval);
         onSend({ role: 'user', content }, plugin);
         setContent('');
         setPlugin(null);
-      }
+      },
+      onCancelled: () => {
+        alert('Payment cancelled');
+      },
     });
+
+    const checkPaymentInterval = setInterval(async () => {
+      const paid = await invoiceResponse.verifyPayment();
+    
+      if (paid && invoiceResponse.preimage) {
+        setPaid({
+          preimage: invoiceResponse.preimage,
+        });
+      }
+    }, 1000);
 
     if (window.innerWidth < 640 && textareaRef && textareaRef.current) {
       textareaRef.current.blur();
     }
   };
 
+
+  
   const handleStopConversation = () => {
     stopConversationRef.current = true;
     setTimeout(() => {
