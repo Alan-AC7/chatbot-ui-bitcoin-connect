@@ -1,67 +1,23 @@
-# Chatbot UI
+# Chatbot UI + Bitcoin Connect
 
-## News
+This demo is based on the use of artificial intelligence combined with bitcoin connect in order to pay to interact with an AI based on ChatGPT, through paid prompts
 
-Chatbot UI 2.0 will launch on December 28th, 2023.
 
-See a [preview](https://x.com/mckaywrigley/status/1738273242283151777?s=20).
+![image](https://github.com/Alan-AC7/chatbot-ui-bitcoin-connect/assets/30165568/0163b713-e914-4f44-b0e0-eabca817ab8e)
 
-This repo will be completely overhauled with the updated codebase.
 
-The old codebase will be available in a new repo.
+## How does it work?
 
-There will be several hours of downtime on ChatbotUI.com while the new version is deployed.
+Just type in, send it, pay for the prompt and get the result!
 
-We recommend exporting your data before the update!
-
-## About
-
-Chatbot UI is an open source chat UI for AI models.
-
-See a [demo](https://twitter.com/mckaywrigley/status/1640380021423603713?s=46&t=AowqkodyK6B4JccSOxSPew).
-
-![Chatbot UI](./public/screenshots/screenshot-0402023.jpg)
-
-## Updates
-
-Chatbot UI will be updated over time.
-
-Expect frequent improvements.
-
-**Next up:**
-
-- [ ] Sharing
-- [ ] "Bots"
-
-## Deploy
-
-**Vercel**
-
-Host your own live version of Chatbot UI with Vercel.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmckaywrigley%2Fchatbot-ui)
-
-**Docker**
-
-Build locally:
-
-```shell
-docker build -t chatgpt-ui .
-docker run -e OPENAI_API_KEY=xxxxxxxx -p 3000:3000 chatgpt-ui
-```
-
-Pull from ghcr:
-
-```
-docker run -e OPENAI_API_KEY=xxxxxxxx -p 3000:3000 ghcr.io/mckaywrigley/chatbot-ui:main
-```
+https://github.com/Alan-AC7/chatbot-ui-bitcoin-connect/assets/30165568/8883d789-7020-4f7d-b60b-2d900984fb2d
 
 ## Running Locally
 
 **1. Clone Repo**
 
 ```bash
-git clone https://github.com/mckaywrigley/chatbot-ui.git
+git clone https://github.com/Alan-AC7/chatbot-ui-bitcoin-connect.git
 ```
 
 **2. Install Dependencies**
@@ -119,3 +75,5 @@ If you don't have an OpenAI API key, you can get one [here](https://platform.ope
 If you have any questions, feel free to reach out to Mckay on [Twitter](https://twitter.com/mckaywrigley).
 
 [GCSE]: https://developers.google.com/custom-search/v1/overview
+
+Original ChatBot UI Repo: https://github.com/mckaywrigley/chatbot-ui.git
