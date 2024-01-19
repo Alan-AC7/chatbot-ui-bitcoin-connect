@@ -394,6 +394,17 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             <div className="mb-2">
               This version of Chatbot UI with Bitcoin Connect integrated will ask you to pay a small amount of sats for each prompt.
             </div>
+            <div className="mb-2">
+              You can check ChatbotUI + Bitcoin Connect repo here:  
+              <a
+                href="https://github.com/Alan-AC7/chatbot-ui-bitcoin-connect"
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                Chatbot UI + Bitcoin Connect Repo
+              </a>
+            </div>
             <div>
               {t("If you want to integrate Bitcoin Connect to your project or app, you can check it here: ")}
               <a
